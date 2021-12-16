@@ -2,7 +2,7 @@ import { string } from 'prop-types';
 import React from 'react';
 import Wrapper from './Header.style';
 
-export function Header({ title }) {
+function Header({ title }) {
   return (
     <Wrapper>
       <h1>{title}</h1>
@@ -17,3 +17,5 @@ Header.propTypes = {
 Header.defaultProps = {
   title: 'Titulo',
 };
+
+export default Header;

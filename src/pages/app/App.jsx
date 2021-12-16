@@ -1,8 +1,13 @@
 import React from 'react';
-import { Layout } from '../../components/Layout';
+import GameList from '../../components/GameList';
+import Layout from '../../components/Layout';
 
 function App() {
-  return <Layout />;
+  return (
+    <Layout>
+      <GameList />
+    </Layout>
+  );
 }
 
 export default App;
