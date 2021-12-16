@@ -5,7 +5,7 @@ import Layout from './index';
 test('renders header', () => {
   render(<Layout />);
 
-  const headerEl = screen.getByRole('header');
+  const headerEl = screen.getByRole('banner');
 
   expect(headerEl).toBeInTheDocument();
 });
