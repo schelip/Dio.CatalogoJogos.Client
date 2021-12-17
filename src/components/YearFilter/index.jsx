@@ -7,7 +7,9 @@ function YearFilter({ years, parentCallback }) {
   const [yearRanges, setYearRanges] = useState([]);
 
   useEffect(() => {
-    const sortedYears = [...years].sort((a, b) => a - b);
+    const sortedYears = [...years]
+      .filter((item, index) => years.indexOf(item) === index)
+      .sort((a, b) => a - b);
     let count = 0;
     const result = [];
     let subresult = [];
