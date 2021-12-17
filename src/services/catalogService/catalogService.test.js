@@ -15,7 +15,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test('transforms json response into object', async () => {
-  const games = await getGame(testGuid);
+  const game = await getGame(testGuid);
 
-  expect(games).toStrictEqual(response);
+  expect(game).toStrictEqual(response);
 });

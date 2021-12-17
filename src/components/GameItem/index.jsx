@@ -17,7 +17,6 @@ function GameItem({
       setProducer(await getProducer(producerId));
     };
     fetchProducer();
-    console.log(producer.nome);
   }, []);
 
   return (
