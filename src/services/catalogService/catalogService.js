@@ -8,6 +8,11 @@ export const getGame = (uuid) => {
   return fetch(url).then((response) => response.json());
 };
 
+export const getProducers = (page, quant) => {
+  const url = `${process.env.REACT_APP_API}produtoras?pagina=${page}&quantidade=${quant}`;
+  return fetch(url).then((response) => response.json());
+};
+
 export const getProducer = (uuid) => {
   const url = `${process.env.REACT_APP_API}produtoras/${uuid}`;
   return fetch(url).then((response) => response.json());

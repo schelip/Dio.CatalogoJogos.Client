@@ -59,23 +59,21 @@ function YearFilter({ years, parentCallback }) {
   return (
     <S.Wrapper>
       <p>Ano de lançamento</p>
-      <S.Checklist>
-        {yearRanges.map((yearRange, index) => (
-          <li key={`range${yearRange[0]}`}>
-            <input
-              type="checkbox"
-              id={`range${yearRange[0]}`}
-              name={`range${yearRange[0]}`}
-              value={(yearRange[0], yearRange[yearRange.length - 1])}
-              onChange={() => handleChange(index)}
-            />
-            <label htmlFor={`range${yearRange[0]}`}>
-              {yearRange[0]}
-              {yearRange.length > 1 && ` - ${yearRange[yearRange.length - 1]}`}
-            </label>
-          </li>
-        ))}
-      </S.Checklist>
+      {yearRanges.map((yearRange, index) => (
+        <li key={`range${yearRange[0]}`}>
+          <input
+            type="checkbox"
+            id={`range${yearRange[0]}`}
+            name={`range${yearRange[0]}`}
+            value={(yearRange[0], yearRange[yearRange.length - 1])}
+            onChange={() => handleChange(index)}
+          />
+          <label htmlFor={`range${yearRange[0]}`}>
+            {yearRange[0]}
+            {yearRange.length > 1 && ` - ${yearRange[yearRange.length - 1]}`}
+          </label>
+        </li>
+      ))}
     </S.Wrapper>
   );
 }

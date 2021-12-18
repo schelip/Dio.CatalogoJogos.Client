@@ -1,12 +1,15 @@
 import { node } from 'prop-types';
 import React from 'react';
 import Header from '../Header';
+import * as S from './Layout.style';
 
 function Layout({ children }) {
   return (
     <>
       <Header title="Dio.CatalogoJogos" />
-      {children}
+      <S.ContentWrapper>
+        {children}
+      </S.ContentWrapper>
     </>
   );
 }

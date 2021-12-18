@@ -3,12 +3,32 @@ import {
 } from 'prop-types';
 import React, { useState } from 'react';
 import GameItem from '../GameItem';
+import ProducerFilter from '../ProducerFilter';
 import YearFilter from '../YearFilter';
 import * as S from './GameList.style';
 
-function GameList({ games }) {
+function GameList({ games, producers }) {
   const [minYear, setMinYear] = useState(-Infinity);
   const [maxYear, setMaxYear] = useState(Infinity);
+  const [selectedProducers, setSelectedProducers] = useState([]);
+
+  const findProducer = (id) => producers.find((p) => p.id === id);
+
+  const getAllProducers = (game) => {
+    const results = [];
+    let producer = findProducer(game.produtoraId);
+    results.push(producer);
+    while (producer.produtoraMaeId !== '00000000-0000-0000-0000-000000000000') {
+      producer = findProducer(producer.produtoraMaeId);
+      results.push(producer);
+    }
+    return results;
+  };
+
+  const shouldRender = (game) => game.ano >= minYear
+    && game.ano <= maxYear
+    && (selectedProducers.length === 0
+      || selectedProducers.some((p) => getAllProducers(game).includes(p)));
 
   const handleYearFilterCallback = (filterData) => {
     const { updatedMinYear, updatedMaxYear } = filterData;
@@ -16,23 +36,29 @@ function GameList({ games }) {
     setMaxYear(updatedMaxYear);
   };
 
+  const handleProducerFilterCallback = (filterData) => {
+    const { updatedProducers } = filterData;
+    setSelectedProducers(updatedProducers);
+  };
+
   return (
     <S.Wrapper>
       <S.Filter>
         <h3>Filtrar Por</h3>
         <YearFilter
-          years={[1990, 1991, 1992, 1993, 1994, 1996]}// games.map((game) => game.ano)}
+          years={games.map((game) => game.ano)}
           parentCallback={handleYearFilterCallback}
         />
-        <S.ProducerWrapper>
-          <p>Produtora</p>
-        </S.ProducerWrapper>
+        <ProducerFilter
+          producers={producers}
+          parentCallback={handleProducerFilterCallback}
+        />
         <S.PriceWrapper>
           <p>Preço</p>
         </S.PriceWrapper>
       </S.Filter>
       <S.ListWrapper>
-        {games.map((game) => game.ano >= minYear && game.ano <= maxYear
+        {games.map((game) => shouldRender(game)
           && (
           <GameItem
             key={game.id}
@@ -55,10 +81,19 @@ GameList.propTypes = {
     ano: number,
     valor: number,
   })),
+  producers: arrayOf(shape({
+    id: string,
+    nome: string,
+    isoPais: string,
+    produtoraMaeId: string,
+    produtorasFilhas: arrayOf(string),
+    jogosProduzidos: arrayOf(string),
+  })),
 };
 
 GameList.defaultProps = {
   games: [],
+  producers: [],
 };
 
 export default GameList;

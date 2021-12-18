@@ -10,15 +10,11 @@ export const Wrapper = styled.div`
 
 export const Filter = styled.div`
   width: 20%;
-  padding: 2px 80px;
+  padding: 2px 40px;
   font-family: 'Roboto Mono';
-  text-align: right;
   font-weight: normal;
   margin-right: 24px;
   background-color: var(--light-gray);
-`;
-
-export const ProducerWrapper = styled.div`
 `;
 
 export const PriceWrapper = styled.div`
