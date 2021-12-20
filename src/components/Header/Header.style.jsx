@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.header`
-  display: flex;
+  height: 84px;
   background-color: var(--dark-blue);
   padding: 8px 5%;
   color: white;

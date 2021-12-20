@@ -10,10 +10,12 @@ export const GlobalStyle = createGlobalStyle`
         --dark-gray-blue: #2C394B;
         --gray-blue: #334756;
         --orange: #FF4C29;
+        --gray: #cccccc;
+        --light-gray: #E2E2E2;
     }
 
     body {
         margin: 0;
-        background-color: var(--dark-gray-blue);
+        background-color: white;
     }
 `;
