@@ -4,7 +4,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import * as S from './ProducerFilter.style';
 
-function ProducerFilter({ producers, parentCallback }) {
+function ProducerFilter({ producers, setSelectedProducers }) {
   const [checkedState, setCheckedState] = useState([]);
 
   useEffect(() => {
@@ -18,9 +18,9 @@ function ProducerFilter({ producers, parentCallback }) {
 
     setCheckedState(updatedCheckedState);
 
-    parentCallback({
-      updatedProducers: producers.filter((item, index) => updatedCheckedState[index]),
-    });
+    setSelectedProducers(
+      producers.filter((item, index) => updatedCheckedState[index]),
+    );
   };
 
   return (
@@ -53,12 +53,12 @@ ProducerFilter.propTypes = {
     produtorasFilhas: arrayOf(string),
     jogosProduzidos: arrayOf(string),
   })),
-  parentCallback: func,
+  setSelectedProducers: func,
 };
 
 ProducerFilter.defaultProps = {
   producers: [],
-  parentCallback: () => { },
+  setSelectedProducers: () => { },
 };
 
 export default ProducerFilter;

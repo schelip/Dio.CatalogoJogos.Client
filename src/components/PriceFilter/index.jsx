@@ -4,7 +4,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import * as S from './PriceFilter.style';
 
-function PriceFilter({ prices, parentCallback }) {
+function PriceFilter({ prices, setSelectedPriceRanges }) {
   const [checkedState, setCheckedState] = useState([]);
   const [priceRanges, setPriceRanges] = useState([]);
 
@@ -38,9 +38,9 @@ function PriceFilter({ prices, parentCallback }) {
 
     setCheckedState(updatedCheckedState);
 
-    parentCallback({
-      updatedPriceRanges: priceRanges.filter((item, index) => updatedCheckedState[index]),
-    });
+    setSelectedPriceRanges(
+      priceRanges.filter((item, index) => updatedCheckedState[index]),
+    );
   };
 
   return (
@@ -68,12 +68,12 @@ function PriceFilter({ prices, parentCallback }) {
 
 PriceFilter.propTypes = {
   prices: arrayOf(number),
-  parentCallback: func,
+  setSelectedPriceRanges: func,
 };
 
 PriceFilter.defaultProps = {
   prices: [],
-  parentCallback: () => { },
+  setSelectedPriceRanges: () => { },
 };
 
 export default PriceFilter;

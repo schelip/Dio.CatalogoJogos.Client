@@ -36,37 +36,22 @@ function GameList({ games, producers }) {
     && (selectedPriceRanges.length === 0
       || selectedPriceRanges.some((p) => p[0] <= game.valor && game.valor <= p[1]));
 
-  const handleYearFilterCallback = (filterData) => {
-    const { updatedMinYear, updatedMaxYear } = filterData;
-    setMinYear(updatedMinYear);
-    setMaxYear(updatedMaxYear);
-  };
-
-  const handleProducerFilterCallback = (filterData) => {
-    const { updatedProducers } = filterData;
-    setSelectedProducers(updatedProducers);
-  };
-
-  const handlePriceFilterCallback = (filterData) => {
-    const { updatedPriceRanges } = filterData;
-    setSelectedPriceRanges(updatedPriceRanges);
-  };
-
   return (
     <S.Wrapper>
       <S.Filter>
         <h3>Filtrar Por</h3>
         <YearFilter
           years={games.map((game) => game.ano)}
-          parentCallback={handleYearFilterCallback}
+          setMinYear={setMinYear}
+          setMaxYear={setMaxYear}
         />
         <ProducerFilter
           producers={producers}
-          parentCallback={handleProducerFilterCallback}
+          setSelectedProducers={setSelectedProducers}
         />
         <PriceFilter
           prices={games.map((game) => game.valor)}
-          parentCallback={handlePriceFilterCallback}
+          setSelectedPriceRanges={setSelectedPriceRanges}
         />
       </S.Filter>
       <S.ListWrapper>
