@@ -3,6 +3,7 @@ import {
 } from 'prop-types';
 import React, { useState } from 'react';
 import GameItem from '../GameItem';
+import PriceFilter from '../PriceFilter';
 import ProducerFilter from '../ProducerFilter';
 import YearFilter from '../YearFilter';
 import * as S from './GameList.style';
@@ -11,6 +12,7 @@ function GameList({ games, producers }) {
   const [minYear, setMinYear] = useState(-Infinity);
   const [maxYear, setMaxYear] = useState(Infinity);
   const [selectedProducers, setSelectedProducers] = useState([]);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
 
   const findProducer = (id) => producers.find((p) => p.id === id);
 
@@ -28,7 +30,9 @@ function GameList({ games, producers }) {
   const shouldRender = (game) => game.ano >= minYear
     && game.ano <= maxYear
     && (selectedProducers.length === 0
-      || selectedProducers.some((p) => getAllProducers(game).includes(p)));
+      || selectedProducers.some((p) => getAllProducers(game).includes(p)))
+    && (selectedPriceRanges.length === 0
+      || selectedPriceRanges.some((p) => p[0] <= game.valor && game.valor <= p[1]));
 
   const handleYearFilterCallback = (filterData) => {
     const { updatedMinYear, updatedMaxYear } = filterData;
@@ -39,6 +43,11 @@ function GameList({ games, producers }) {
   const handleProducerFilterCallback = (filterData) => {
     const { updatedProducers } = filterData;
     setSelectedProducers(updatedProducers);
+  };
+
+  const handlePriceFilterCallback = (filterData) => {
+    const { updatedPriceRanges } = filterData;
+    setSelectedPriceRanges(updatedPriceRanges);
   };
 
   return (
@@ -53,9 +62,10 @@ function GameList({ games, producers }) {
           producers={producers}
           parentCallback={handleProducerFilterCallback}
         />
-        <S.PriceWrapper>
-          <p>Preço</p>
-        </S.PriceWrapper>
+        <PriceFilter
+          prices={games.map((game) => game.valor)}
+          parentCallback={handlePriceFilterCallback}
+        />
       </S.Filter>
       <S.ListWrapper>
         {games.map((game) => shouldRender(game)
