@@ -1,32 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { number, string } from 'prop-types';
+import {
+  arrayOf, number, string,
+} from 'prop-types';
 import * as S from './GameItem.style';
-import { getProducer } from '../../services/catalogService';
+import { getPosterURL } from '../../services/imdbService';
 
 function GameItem({
   name,
-  producerId,
+  producerNames,
   year,
   price,
-  imgURL,
 }) {
-  const [producer, setProducer] = useState('');
+  const [posterURL, setPosterURL] = useState('https://via.placeholder.com/140x220');
 
   useEffect(() => {
-    const fetchProducer = async () => {
-      setProducer(await getProducer(producerId));
+    const fetchPosterURL = async () => {
+      const url = await getPosterURL(name, year);
+      if (url) setPosterURL(url);
     };
-    fetchProducer();
+    fetchPosterURL();
   }, []);
 
   return (
     <S.Wrapper>
-      <img src={imgURL} alt={`Thumbnail for ${name}`} />
+      <img src={posterURL} width={140} height={220} alt={`Poster for ${name}`} />
       <S.SubWrapper>
         <S.WrapperInfo>
           <h2>{name}</h2>
-          <h4>{producer.nome}</h4>
-          <p>{year}</p>
+          <h4>{year}</h4>
+          <div>
+            {producerNames[0]}
+            {producerNames.slice(1).map((p) => (
+              <S.ParentProducer key={p}>
+                {` / ${p}`}
+              </S.ParentProducer>
+            ))}
+          </div>
         </S.WrapperInfo>
         <S.WrapperPrice>
           <h2>{`R$${price.toFixed(2)}`}</h2>
@@ -39,18 +48,16 @@ function GameItem({
 
 GameItem.propTypes = {
   name: string,
-  producerId: string,
+  producerNames: arrayOf(string),
   year: number,
   price: number,
-  imgURL: string,
 };
 
 GameItem.defaultProps = {
   name: 'Game Name',
-  producerId: 'Producer Name',
-  year: 2020,
+  producerNames: ['Producer Name'],
+  year: 0,
   price: 0,
-  imgURL: 'https://via.placeholder.com/140x220',
 };
 
 export default GameItem;

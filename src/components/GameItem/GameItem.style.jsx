@@ -29,12 +29,15 @@ export const WrapperInfo = styled.div`
     margin: 2px 0;
   }
   h4 {
-    font-weight: normal;
     margin: 0px;
   }
   p {
     margin: 2px 0;
   }
+`;
+
+export const ParentProducer = styled.i`
+  font-size: smaller;
 `;
 
 export const WrapperPrice = styled.div`

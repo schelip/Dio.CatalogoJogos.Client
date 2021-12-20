@@ -19,10 +19,12 @@ function GameList({ games, producers }) {
   const getAllProducers = (game) => {
     const results = [];
     let producer = findProducer(game.produtoraId);
-    results.push(producer);
-    while (producer.produtoraMaeId !== '00000000-0000-0000-0000-000000000000') {
-      producer = findProducer(producer.produtoraMaeId);
+    if (producer) {
       results.push(producer);
+      while (producer.produtoraMaeId !== '00000000-0000-0000-0000-000000000000') {
+        producer = findProducer(producer.produtoraMaeId);
+        results.push(producer);
+      }
     }
     return results;
   };
@@ -73,7 +75,7 @@ function GameList({ games, producers }) {
           <GameItem
             key={game.id}
             name={game.nome}
-            producerId={game.produtoraId}
+            producerNames={getAllProducers(game).map((p) => p.nome)}
             year={game.ano}
             price={game.valor}
           />

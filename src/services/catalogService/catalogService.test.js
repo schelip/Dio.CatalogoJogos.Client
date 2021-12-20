@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { getGame } from './catalogService';
+import { getGame } from './index';
 
 const testGuid = 'e7d11d89-e2f1-4b3e-a6a5-10525f58f18e';
 const url = `${process.env.REACT_APP_API}jogos/${testGuid}`;
