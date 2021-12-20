@@ -16,9 +16,6 @@ export const Filter = styled.div`
   background-color: var(--light-gray);
 `;
 
-export const PriceWrapper = styled.div`
-`;
-
 export const ListWrapper = styled.div`
   width: 80%;
   padding-right: 32px;

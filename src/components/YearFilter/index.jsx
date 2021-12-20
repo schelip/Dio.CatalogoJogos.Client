@@ -10,20 +10,19 @@ function YearFilter({ years, parentCallback }) {
     const sortedYears = [...years]
       .filter((item, index) => years.indexOf(item) === index)
       .sort((a, b) => a - b);
-    let count = 0;
+
+    const minYear = sortedYears[0];
+    const maxYear = sortedYears[sortedYears.length - 1];
     const result = [];
-    let subresult = [];
-    for (let i = 0; i < sortedYears.length; i += 1) {
-      subresult.push(sortedYears[i]);
-      count += 1;
-      if (count === 5) {
-        result.push(subresult);
-        subresult = [];
-        count = 0;
+
+    if (minYear && maxYear) {
+      let y;
+      for (y = minYear; y < maxYear - 5; y += 5) {
+        result.push([y, y + 4]);
       }
+      result.push([y, maxYear]);
     }
 
-    if (count > 0) result.push(subresult);
     if (result.toString() !== yearRanges.toString()) { setYearRanges(result); }
   }, [years]);
 
