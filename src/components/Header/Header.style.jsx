@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.header`
-  height: 84px;
+export const Wrapper = styled.header`
   background-color: var(--dark-blue);
-  padding: 8px 5%;
+  min-width: 900px;
+  height: 80px;
+  padding: 0 40px;
   color: white;
   font-family: 'Bakbak One', cursive;
-`;
+  display: flex;
+  flex-direction: row;
 
-export default Wrapper;
+  h1 {
+    margin-top: auto;
+    margin-bottom: 12px;
+  }
+`;

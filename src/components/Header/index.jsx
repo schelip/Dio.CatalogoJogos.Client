@@ -1,21 +1,25 @@
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 import React from 'react';
-import Wrapper from './Header.style';
+import LoginForm from '../LoginForm/index';
+import * as S from './Header.style';
 
-function Header({ title }) {
+function Header({ title, setToken }) {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <h1>{title}</h1>
-    </Wrapper>
+      <LoginForm setToken={setToken} />
+    </S.Wrapper>
   );
 }
 
 Header.propTypes = {
   title: string,
+  setToken: func,
 };
 
 Header.defaultProps = {
   title: 'Titulo',
+  setToken: () => { },
 };
 
 export default Header;

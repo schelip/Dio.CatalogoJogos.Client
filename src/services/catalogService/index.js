@@ -1,3 +1,19 @@
+export const authenticate = async (email, password) => {
+  const userData = {
+    email,
+    senha: password,
+  };
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  };
+  const url = `${process.env.REACT_APP_API}usuarios/login`;
+  return fetch(url, options).then((response) => response.json());
+};
+
 export const getGames = async (page, quant) => {
   const url = `${process.env.REACT_APP_API}jogos?pagina=${page}&quantidade=${quant}`;
   return fetch(url).then((response) => response.json());
