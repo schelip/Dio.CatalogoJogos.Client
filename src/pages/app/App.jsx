@@ -7,7 +7,8 @@ import { getGames, getProducers } from '../../services/catalogService';
 function App() {
   const [games, setGames] = useState([]);
   const [producers, setProducers] = useState([]);
-  const [token, setToken] = useState([]);
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -19,9 +20,9 @@ function App() {
 
   return (
     <>
-      <Header title="Dio.CatalogoJogos" setToken={setToken} />
+      <Header title="Dio.CatalogoJogos" setToken={setToken} user={user} setUser={setUser} />
       <S.ContentWrapper>
-        <GameList games={games} producers={producers} token={token} />
+        <GameList games={games} producers={producers} token={token} user={user} setUser={setUser} />
       </S.ContentWrapper>
     </>
   );

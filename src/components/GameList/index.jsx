@@ -1,14 +1,18 @@
 import {
+  func,
   number, string, arrayOf, shape,
 } from 'prop-types';
 import React, { useState } from 'react';
+import { patchUserGames } from '../../services/catalogService';
 import GameItem from '../GameItem';
 import PriceFilter from '../PriceFilter';
 import ProducerFilter from '../ProducerFilter';
 import YearFilter from '../YearFilter';
 import * as S from './GameList.style';
 
-function GameList({ games, producers }) {
+function GameList({
+  games, producers, token, user, setUser,
+}) {
   const [minYear, setMinYear] = useState(-Infinity);
   const [maxYear, setMaxYear] = useState(Infinity);
   const [selectedProducers, setSelectedProducers] = useState([]);
@@ -36,6 +40,11 @@ function GameList({ games, producers }) {
     && (selectedPriceRanges.length === 0
       || selectedPriceRanges.some((p) => p[0] <= game.valor && game.valor <= p[1]));
 
+  const handleBuy = async (game) => {
+    const response = await patchUserGames(token, user.id, game.id);
+    if (response) setUser(response);
+  };
+
   return (
     <S.Wrapper>
       <S.Filter>
@@ -59,10 +68,10 @@ function GameList({ games, producers }) {
           && (
           <GameItem
             key={game.id}
-            name={game.nome}
+            game={game}
             producerNames={getAllProducers(game).map((p) => p.nome)}
-            year={game.ano}
-            price={game.valor}
+            handleBuy={handleBuy}
+            isOwned={user.jogos && user.jogos.some((g) => g === game.id)}
           />
           ))}
       </S.ListWrapper>
@@ -86,11 +95,22 @@ GameList.propTypes = {
     produtorasFilhas: arrayOf(string),
     jogosProduzidos: arrayOf(string),
   })),
+  token: string,
+  user: shape({
+    id: string,
+    email: string,
+    fundos: number,
+    nome: string,
+  }),
+  setUser: func,
 };
 
 GameList.defaultProps = {
   games: [],
   producers: [],
+  token: '',
+  user: {},
+  setUser: () => { },
 };
 
 export default GameList;

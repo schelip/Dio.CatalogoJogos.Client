@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.header`
   background-color: var(--dark-blue);
-  min-width: 900px;
+  min-width: 950px;
   height: 80px;
   padding: 0 40px;
   color: white;

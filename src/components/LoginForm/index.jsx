@@ -1,12 +1,13 @@
-import { func } from 'prop-types';
+import {
+  number, string, func, shape,
+} from 'prop-types';
 import React, { useState } from 'react';
 import { authenticate } from '../../services/catalogService';
 import * as S from './LoginForm.style';
 
-function LoginForm({ setToken }) {
+function LoginForm({ setToken, user, setUser }) {
   const [renderForm, setRenderForm] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -61,6 +62,7 @@ function LoginForm({ setToken }) {
                     id="email"
                     name="email"
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </label>
                 <br />
@@ -71,6 +73,7 @@ function LoginForm({ setToken }) {
                     id="password"
                     name="password"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </label>
                 <button type="button" onClick={handleLogin}>Submeter</button>
@@ -84,10 +87,17 @@ function LoginForm({ setToken }) {
 
 LoginForm.propTypes = {
   setToken: func,
+  user: shape({
+    nome: string,
+    fundos: number,
+  }),
+  setUser: func,
 };
 
 LoginForm.defaultProps = {
   setToken: () => { },
+  user: {},
+  setUser: () => { },
 };
 
 export default LoginForm;

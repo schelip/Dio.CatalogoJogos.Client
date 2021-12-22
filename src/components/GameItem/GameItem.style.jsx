@@ -49,15 +49,6 @@ export const WrapperPrice = styled.div`
     font-family: 'Roboto Mono', Arial;
     margin: 8px 0;
   }
-  button {
-    background-color: var(--orange);
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    width: 100%;
-    height: 30px;
-    font-weight: bolder;
-  }
 `;
 
 export const Price = styled.h2`
@@ -69,15 +60,24 @@ export const Price = styled.h2`
   bottom: 0;
 `;
 
-export const Button = styled.button`
-  background-color: var(--orange);
+export const BuyButton = styled.button`
   color: white;
   border: 0;
   border-radius: 5px;
-  width: 200px;
+  width: 100%;
   height: 30px;
-  position: absolute;
-  left: 156;
-  bottom: 0;
   font-weight: bolder;
+
+  &.notOwned {
+    cursor: pointer;
+    background-color: var(--orange);
+  
+    &:hover {
+      background-color: orange;
+    }
+  }
+
+  &.owned {
+    background-color: var(--green);
+  }
 `;
