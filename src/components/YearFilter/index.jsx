@@ -2,7 +2,7 @@ import { func, number, arrayOf } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import * as S from './YearFilter.style';
 
-function YearFilter({ years, parentCallback }) {
+function YearFilter({ years, setMinYear, setMaxYear }) {
   const [checkedState, setCheckedState] = useState([]);
   const [yearRanges, setYearRanges] = useState([]);
 
@@ -39,20 +39,16 @@ function YearFilter({ years, parentCallback }) {
 
     const minYearRangeIndex = updatedCheckedState.indexOf(true);
     if (minYearRangeIndex === -1) {
-      parentCallback({
-        updatedMinYear: -Infinity,
-        updatedMaxYear: +Infinity,
-      });
+      setMinYear(-Infinity);
+      setMaxYear(+Infinity);
 
       return;
     }
 
     const maxYearRangeIndex = updatedCheckedState.lastIndexOf(true);
 
-    parentCallback({
-      updatedMinYear: yearRanges[minYearRangeIndex][0],
-      updatedMaxYear: yearRanges[maxYearRangeIndex][yearRanges[maxYearRangeIndex].length - 1],
-    });
+    setMinYear(yearRanges[minYearRangeIndex][0]);
+    setMaxYear(yearRanges[maxYearRangeIndex][yearRanges[maxYearRangeIndex].length - 1]);
   };
 
   return (
@@ -79,12 +75,14 @@ function YearFilter({ years, parentCallback }) {
 
 YearFilter.propTypes = {
   years: arrayOf(number),
-  parentCallback: func,
+  setMinYear: func,
+  setMaxYear: func,
 };
 
 YearFilter.defaultProps = {
   years: [],
-  parentCallback: () => { },
+  setMinYear: () => { },
+  setMaxYear: () => { },
 };
 
 export default YearFilter;

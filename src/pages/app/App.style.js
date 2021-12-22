@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ContentWrapper = styled.div`
   position: absolute;
   width: 100%;
-  top: 100px;
+  min-width: 950px;
+  top: 80px;
   bottom: 0;
 `;
