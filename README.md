@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Digital Innovation One - Prática ReactJs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Criando um front-end componentizado de catálogo de jogos
 
-## Available Scripts
+Projeto desenvolvido durante o bootcamp TakeBlip Fullstack Developer #2 na plataforma DIO com o intuito de aplicar conceitos de ReactJs.
+Consiste no Client da API RESTful desenvolvida no projeto [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos).
 
-In the project directory, you can run:
+O projeto permite à um usuário já cadastrado no banco de dados realizar sua autenticação, visualizar e filtrar os jogos cadastrados e realizar a "compra" de jogos.
 
-### `npm start`
+Foram aplicados no projeto:
+- Práticas de componentização
+- Testes unitários utilizando `jest` e `msw/node`
+- Aplicação de estilos utilizando `styled-components`
+- Práticas do paradigma funcional utilizando Hooks
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Preview
+Preview do projeto finalizado:
+## ![preview_img](./preview.PNG)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Rodando o projeto
 
-### `npm test`
+Clone o projeto do back-end: [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Inicie a API e popule o banco de dados seguindo as instruções de [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos)
 
-### `npm run build`
+O projeto utiliza [IMDb-API](https://imdb-api.com/) para carregar os posters dos jogos, sendo necessário fazer o cadastro para receber uma chave gratuita (100 solicitações diárias).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone o projeto do client e crie um arquivo `.env`, e copie o conteúdo de `sample.env`. Substitua o valor de `REACT_APP_API` com o URL do endpoint da API e de `REACT_APP_IMDB_KEY` com a sua chave. Caso a chave informada sejá inválida, o app funcionará normalmente, mas renderizará Placeholders no lugar dos Posters.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Inicializando o projeto com [Yarn](https://yarnpkg.com/):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `$ yarn`
+### `$ yarn start`
 
-### `npm run eject`
+Caso o projeto não esteja sendo hosteado na porta padrão (:3000), é necessário alterar o valor contido no campo `Dio.CatalogoJogos.Api\appsettings.json\AllowedOrigins` para que o client seja considerado na política de CORS da API.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Caso a API ainda não esteja retornando dados, o seu browser pode estar bloqueando a API por falta de um certificado. Visite a URL com política https (https://localhost:5001, por padrão) e habilite o acesso.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Caso o banco de dados tenha sido populado seguindo com os dados de exemplo, foi cadastrado um usuário de exemplo com email _user@example.com_ e senha _string_.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Créditos da mentoria:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Matheus Benites: https://linkedin.com/in/omatheusbenites
