@@ -3,7 +3,7 @@
 ## Criando um front-end componentizado de catálogo de jogos
 
 Projeto desenvolvido durante o bootcamp TakeBlip Fullstack Developer #2 na plataforma DIO com o intuito de aplicar conceitos de ReactJs.
-Consiste no Client da API RESTful desenvolvida no projeto [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos).
+Consiste no Client da API RESTful desenvolvida no projeto [Dio.CatalogoJogos](https://github.com/schelip/Dio.CatalogoJogos).
 
 O projeto permite à um usuário já cadastrado no banco de dados realizar sua autenticação, visualizar e filtrar os jogos cadastrados e realizar a "compra" de jogos.
 
@@ -19,9 +19,9 @@ Preview do projeto finalizado:
 
 ## Rodando o projeto
 
-Clone o projeto do back-end: [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos)
+Clone o projeto do back-end: [Dio.CatalogoJogos](https://github.com/schelip/Dio.CatalogoJogos)
 
-Inicie a API e popule o banco de dados seguindo as instruções de [`Dio.CatalogoJogos`](https://github.com/schelip/Dio.CatalogoJogos)
+Inicie a API e popule o banco de dados seguindo as instruções de [Dio.CatalogoJogos](https://github.com/schelip/Dio.CatalogoJogos)
 
 O projeto utiliza [IMDb-API](https://imdb-api.com/) para carregar os posters dos jogos, sendo necessário fazer o cadastro para receber uma chave gratuita (100 solicitações diárias).
 
