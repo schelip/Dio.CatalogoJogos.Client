@@ -12,8 +12,9 @@ function App() {
 
   useEffect(() => {
     const fetchGames = async () => {
-      setGames(await getGames(1, 20));
-      setProducers(await getProducers(1, 20));
+      // There is yet no implemented method on the backend that fetches all entities, so fetching a large amount is being used as a workaround for now
+      setGames(await getGames(1, 200));
+      setProducers(await getProducers(1, 200));
     };
     fetchGames();
   }, []);
